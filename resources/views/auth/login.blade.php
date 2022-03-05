@@ -111,7 +111,7 @@
         <!-- /.card -->
     </div>
     <!-- /.login-box -->
-  <!-- jQuery -->
+
     <!-- jQuery -->
     <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
