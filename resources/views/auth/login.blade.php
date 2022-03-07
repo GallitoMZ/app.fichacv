@@ -3,10 +3,14 @@
 @section('content')
 
     <body class="hold-transition login-page" style="background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);">
+        <div class="top-right links">
+
+
+        </div>
         <div class="login-box">
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a href="../../index2.html" class="h1"><i class="fas fa-book text-success"></i> <b>SWACV</b>
+                    <a href="{{ url('/') }}" class="h1"><i class="fas fa-book text-success"></i> <b>SWACV</b>
                     </a>
                 </div>
                 <div class="card-body">

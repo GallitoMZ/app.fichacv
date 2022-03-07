@@ -6,7 +6,7 @@
         <div class="register-box">
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a href="../../index2.html" class="h1"><i class="fas fa-book text-success"></i>
+                    <a href="{{ url('/') }}" class="h1"><i class="fas fa-book text-success"></i>
                         <b>SWACV</b></a>
                 </div>
                 <div class="card-body">
