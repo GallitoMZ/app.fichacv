@@ -51,7 +51,11 @@
             color: #fff;
             font-weight: 200;
         }
-
+        .title2 {
+            font-size: 42px;
+            color: #fff;
+            font-weight: 200;
+        }
         .links>a {
             color: #282829;
             padding: 0 25px;
@@ -89,7 +93,9 @@
             <div class="title m-b-md">
                 SWACV
             </div>
-
+            <div class="title2 m-b-md">
+                Sistema Web de Administración de Curriculum Vitae
+            </div>
             <div class="links">
                 <a href="https://laravel.com/docs">Documentacion</a>
                 <a href="https://sistemas.unmsm.edu.pe/site/index.php">FISI UNMSM</a>
