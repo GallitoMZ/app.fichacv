@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/contacto',function(){
+//     $correo = new TestMail;
+//     Mail::to('erik.melgarejo5@gmail.com')->send($correo);
+//     return "Mensaje enviado";
+// });
