@@ -15,6 +15,7 @@
         "laravel/framework": "^7.29",
         "aws/aws-sdk-php": "~3.0",
         "laravel/tinker": "^2.5",
+        "laravelcollective/html": "^6.2",
         "laravel/ui": "^2.4"
     },
     "require-dev": {

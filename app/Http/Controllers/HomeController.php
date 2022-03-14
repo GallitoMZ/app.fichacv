@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()->user();
+        $persona = Persona::where('US_CODIGO', $user->id)->first();
+        if ($persona) {
+            $data['persona'] = $persona;
+        } else {
+            $persona_new = new Persona();
+            $persona_new->PE_NOMBRES=$user->name;
+            $persona_new->PE_CORREO=$user->email;
+            $persona_new->US_CODIGO=$user->id;
+            $persona_new->save();
+            $data['persona'] = $persona_new;
+        }
+        $data['user'] = $user;
+        return view('home', compact('data'));
     }
 }

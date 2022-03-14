@@ -16,12 +16,18 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
-
+    @yield('styles')
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2-bootstrap.min.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-
+        <!-- Preloader -->
+        {{-- <div class="preloader flex-column justify-content-center align-items-center" style="background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);">
+            <img class="animation__shake " src="{{ asset('adminlte/dist/img/logo/logo.svg') }}" alt="AdminLTELogo" height="120" width="120">
+            <h3 class="animation__shake ">Sistema web de Administracion de Curriculum Vitae</h3>
+        </div> --}}
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -31,10 +37,9 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Principal</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contacto</a>
+                    <a href="#" class="nav-link">
+                        <span class="right badge badge-primary">Sistema Web de Administracion de Curriculum Vitae</span>
+                    </a>
                 </li>
             </ul>
 
@@ -83,7 +88,7 @@
                     style="opacity: .8"> --}}
                 <i class="fas fa-book text-success "></i>
 
-                <span class="brand-text font-weight-light">SWACV</span>
+                <span class="brand-text font-weight-normal">SWACV</span>
             </a>
 
             <!-- Sidebar -->
@@ -96,7 +101,7 @@
 
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Usuario</a>
+                        <a href="#" class="d-block">@yield('usuario')</a>
                     </div>
                 </div>
 
@@ -115,46 +120,92 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent text-sm" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+
+                        <li class="nav-item">
+                            <a href="{{ route('home') }}" class="nav-link">
+                                <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Página Principal
-                                    <i class="right fas fa-angle-left"></i>
                                 </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#perfil" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Perfil Curricular<i class="fas fa-angle-left right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Página activa</p>
+                                    <a href="{{ route('formulario.datos_generales') }}" class="nav-link">
+                                        <i class="fas fa-user-edit text-yellow nav-icon"></i>
+                                        <p>Datos Generales</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Página inactiva</p>
+                                {{-- <li class="nav-item menu-open">
+                                    <a href="#estudio" class="nav-link">
+                                        <i class="fas fa-graduation-cap text-yellow nav-icon"></i>
+                                        <p>
+                                            Datos de Estudio
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
                                     </a>
-                                </li>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="#estudiosr" class="nav-link">
+                                                <i class="fas fa-user-graduate text-success nav-icon"></i>
+                                                <p>Estudios Realizados</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#especi" class="nav-link">
+                                                <i class="fas fa-book-reader text-success nav-icon"></i>
+                                                <p>Especializaciones</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#cono" class="nav-link">
+                                                <i class="fas fa-bookmark text-success nav-icon"></i>
+                                                <p>Conocimientos no Acred.</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li> --}}
+
+                                {{-- <li class="nav-item menu-open">
+                                    <a href="#labo" class="nav-link ">
+                                        <i class="fas fa-briefcase text-yellow nav-icon"></i>
+                                        <p>
+                                            Datos Laborales
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview" >
+                                        <li class="nav-item">
+                                            <a href="#laborales" class="nav-link">
+                                                <i class="fas fa-user-tie text-success nav-icon"></i>
+                                                <p>Experiencia Laboral </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li> --}}
+
+                                {{-- <li class="nav-item">
+                                    <a href="#cur" class="nav-link">
+                                        <i class="fas fa-file-archive text-yellow nav-icon"></i>
+                                        <p>Documentos Curriculares</p>
+                                    </a>
+                                </li> --}}
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Otro link
-                                    <span class="right badge badge-danger">Nuevo</span>
-                                </p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST" style="display: inline">
                                 @csrf
-                                <a href="#" class="nav-link" onclick="this.closest('form').submit()" >
+                                <a href="#" class="nav-link" onclick="this.closest('form').submit()">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>
                                         Logout
@@ -200,6 +251,8 @@
     <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
+    @yield('scripts')
 </body>
 
 </html>
