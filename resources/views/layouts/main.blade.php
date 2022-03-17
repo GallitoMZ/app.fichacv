@@ -145,6 +145,12 @@
                                         <p>Datos Generales</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('formulario.datos_generales.prueba')}}" class="nav-link">
+                                        <i class="fas fa-user-edit text-yellow nav-icon"></i>
+                                        <p>Curriculum Prueba</p>
+                                    </a>
+                                </li>
                                 {{-- <li class="nav-item menu-open">
                                     <a href="#estudio" class="nav-link">
                                         <i class="fas fa-graduation-cap text-yellow nav-icon"></i>

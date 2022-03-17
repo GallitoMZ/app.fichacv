@@ -2,6 +2,11 @@
 @section('usuario')
     {{ isset($data['persona']->PE_NOMBRES) ? $data['persona']->PE_NOMBRES : $data['user']->name }}
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+@endsection
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -72,19 +77,19 @@
                                         de Origen)
                                         <span style="color:red">(*)</span>
                                     </label>
-                                    {!! Form::select('paisNacimiento', $data['paises_eleccion'], isset($data['persona']->PE_PAIS_NACION) ? $data['persona']->PE_PAIS_NACION : '', ['class' => 'form-control select2', 'required','onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'nacionalidad_id']) !!}
+                                    {!! Form::select('paisNacimiento', $data['paises_eleccion'], isset($data['persona']->PE_PAIS_NACION) ? $data['persona']->PE_PAIS_NACION : '', ['class' => 'form-control select2', 'required', 'onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'nacionalidad_id']) !!}
                                 </div>
                             </div>
                             <div class="form-group col-md">
                                 <label class="col-form-label col-form-label-sm ">Ciudad de Nacimiento :
                                     <span style="color:red">(*)</span>
                                 </label>
-                                {!! Form::text('ciudad', isset($data['persona']->PE_CIUD_NACION) ? $data['persona']->PE_CIUD_NACION : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Ciudad ','oninput' => 'fn_guardar()', 'required', 'id' => 'ciudad_id']) !!}
+                                {!! Form::text('ciudad', isset($data['persona']->PE_CIUD_NACION) ? $data['persona']->PE_CIUD_NACION : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Ciudad ', 'oninput' => 'fn_guardar()', 'required', 'id' => 'ciudad_id']) !!}
                             </div>
                             <div class="form-group col-md">
                                 <label class="col-form-label col-form-label-sm">Fecha de Nacimiento</label><br>
                                 <div class="input-group">
-                                    {!! Form::text('fec_naci', isset($data['persona']->PE_FNACIMIENTO) ? $data['persona']->getFechaNacimiento() : '', ['class' => 'form-control form-control-sm daterangepick','oninput' => 'fn_guardar()', 'id' => 'fec_naci_id']) !!}
+                                    {!! Form::text('fec_naci', isset($data['persona']->PE_FECHA_NAC) ? $data['persona']->getFechaNacimiento() : '', ['class' => 'form-control form-control-sm daterangepick', 'onchange' => 'fn_guardar()', 'id' => 'fec_naci_id']) !!}
                                     <div class="input-group-append">
                                         <div class="input-group-text"><i class="fa fa-calendar" style="color: green"></i>
                                         </div>
@@ -100,7 +105,7 @@
                                     <label class="col-form-label col-form-label-sm">Indique el País emisor del documento :
                                         <span style="color:red">(*)</span>
                                     </label>
-                                    {!! Form::select('paisDocumento', $data['paises_eleccion'], isset($data['persona']->PE_PAIS_DOCU) ? $data['persona']->PE_PAIS_DOCU : '', ['class' => 'form-control select2', 'required','onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'pais_docu_id']) !!}
+                                    {!! Form::select('paisDocumento', $data['paises_eleccion'], isset($data['persona']->PE_PAIS_DOCU) ? $data['persona']->PE_PAIS_DOCU : '', ['class' => 'form-control select2', 'required', 'onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'pais_docu_id']) !!}
                                 </div>
                             </div>
                             <div class="form-group col-md">
@@ -108,14 +113,14 @@
                                     <label class="col-form-label col-form-label-sm">Tipo de Documento de identidad :
                                         <span style="color:red">(*)</span>
                                     </label>
-                                    {!! Form::select('tipodocumento', $data['tiposdocumento'], isset($data['persona']->PE_TIPO_DOC) ? $data['persona']->PE_TIPO_DOC : '', ['class' => 'form-control select2', 'required','onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'tipo_docu_id']) !!}
+                                    {!! Form::select('tipodocumento', $data['tiposdocumento'], isset($data['persona']->PE_TIPO_DOCU) ? $data['persona']->PE_TIPO_DOCU : '', ['class' => 'form-control select2', 'required', 'onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'tipo_docu_id']) !!}
                                 </div>
                             </div>
                             <div class="form-group col-md">
                                 <label class="col-form-label col-form-label-sm">Número de Documento :
                                     <span style="color:red">(*)</span>
                                 </label>
-                                {!! Form::text('numdocumento', $data['persona']->PE_DOCUMENTO, ['class' => 'form-control form-control-sm', 'placeholder' => 'Numero de Documento', 'required','oninput' => 'fn_guardar()', 'id' => 'nume_docu_id']) !!}
+                                {!! Form::text('numdocumento', isset($data['persona']->PE_NUM_DOCU) ? $data['persona']->PE_NUM_DOCU : '', ['class' => 'form-control form-control-sm', 'placeholder' => 'Numero de Documento', 'required', 'oninput' => 'fn_guardar()', 'id' => 'nume_docu_id']) !!}
                             </div>
                         </div>
 
@@ -132,7 +137,7 @@
                                     <label class="col-form-label col-form-label-sm">Sexo :
                                         <span style="color:red">(*)</span>
                                     </label>
-                                    {!! Form::select('sexo', $data['sexo'], isset($data['persona']->PE_SEXO) ? $data['persona']->PE_SEXO : '', ['class' => 'form-control select2', 'required','onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'sexo_id']) !!}
+                                    {!! Form::select('sexo', $data['sexo'], isset($data['persona']->PE_SEXO) ? $data['persona']->PE_SEXO : '', ['class' => 'form-control select2', 'required', 'onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'sexo_id']) !!}
                                 </div>
                             </div>
                             <div class="form-group col-md">
@@ -140,7 +145,7 @@
                                     <label class="col-form-label col-form-label-sm">Estado Civil :
                                         <span style="color:red">(*)</span>
                                     </label>
-                                    {!! Form::select('estadocivil', $data['estados_civiles'], isset($data['persona']->PE_ESTADO_CIVIL) ? $data['persona']->PE_ESTADO_CIVIL : '', ['class' => 'form-control select2', 'required','onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'estado_civil_id']) !!}
+                                    {!! Form::select('estadocivil', $data['estados_civiles'], isset($data['persona']->PE_ESTADO_CIV) ? $data['persona']->PE_ESTADO_CIV : '', ['class' => 'form-control select2', 'required', 'onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'estado_civil_id']) !!}
                                 </div>
                             </div>
                         </div>
@@ -154,8 +159,8 @@
                                 <span class="badge" id="txt_guardado_id"></span>
                             </div>
                             <div class="form-group col-md-2">
-                                <button type="button" class="btn btn-primary btn-block"
-                                    id="btn_siguiente_guardar">Siguiente</button>
+                                <a href="{{ route('formulario.datos_generales.prueba') }}" type="button"
+                                    class="btn btn-primary btn-block">Siguiente</a>
                             </div>
 
                         </div>
@@ -250,4 +255,9 @@
     <script src="{{ asset('adminlte/plugins/jquery-validation/additional-methods.min.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/jquery-validation/localization/messages_es_PE.min.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/jquery-validation/localization/methods_es_CL.min.js') }}"></script>
+
+    <script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('adminlte/plugins/moment/locale/es.js') }}"></script>
+    <script src="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 @endsection

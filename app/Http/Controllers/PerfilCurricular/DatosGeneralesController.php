@@ -496,8 +496,11 @@ class DatosGeneralesController extends Controller
 
             $persona->PE_PAIS_NACION = $request->paisNacimiento;
             $persona->PE_CIUD_NACION = $request->ciudad;
-            $persona->PE_FECHA_NAC = $request->fec_naci;
 
+            if (!empty($request->fec_naci)) {
+                $fecha = date_format(date_create_from_format('d/m/Y', substr($request->fec_naci, 0, 10)), 'Y-m-d');
+                $persona->PE_FECHA_NAC = $fecha;
+            }
             $persona->PE_PAIS_DOCU = $request->paisDocumento;
             $persona->PE_TIPO_DOCU = $request->tipodocumento;
             $persona->PE_NUM_DOCU = $request->numdocumento;
@@ -522,6 +525,31 @@ class DatosGeneralesController extends Controller
             ];
             return $return;
         }
+    }
+
+    public function prueba(Request $request)
+    {
+
+        $user = auth()->user();
+        $persona = Persona::where('US_CODIGO', $user->id)->first();
+        if ($persona) {
+            $data['persona'] = $persona;
+        } else {
+            $persona_new = new Persona();
+            $persona_new->PE_NOMBRES=$user->name;
+            $persona_new->PE_CORREO=$user->email;
+            $persona_new->US_CODIGO=$user->id;
+            $persona_new->save();
+            $data['persona'] = $persona_new;
+        }
+        $data['user'] = $user;
+
+
+
+
+        // $direccion = Direccionxpersona::where('PE_CODIGO', $persona->id)->first();
+
+        return view('PerfilCurricular.prueba', compact('data'));
     }
 }
 

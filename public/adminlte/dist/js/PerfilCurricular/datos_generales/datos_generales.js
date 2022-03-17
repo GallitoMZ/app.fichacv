@@ -75,6 +75,8 @@ $(document).ready(function() {
         }
     });
 
+    fecha_custom();
+
 
 
 });
@@ -106,4 +108,49 @@ function fn_guardar() {
 
         }
     })
+}
+
+function fecha_custom(params) {
+    $('.daterangepick').daterangepicker({
+
+        "locale": {
+            "format": "DD/MM/YYYY",
+            "separator": " - ",
+            "applyLabel": "Guardar",
+            "cancelLabel": "Cancelar",
+            "fromLabel": "Desde",
+            "toLabel": "Hasta",
+            "customRangeLabel": "Personalizar",
+            "daysOfWeek": [
+                "Dom",
+                "Lun",
+                "Mar",
+                "Mie",
+                "Jue",
+                "Vie",
+                "Sab"
+            ],
+            "monthNames": [
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Setiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            ],
+            "firstDay": 1
+        },
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "minYear": 1901,
+        "autoApply": true,
+        "drops": "auto",
+        maxYear: parseInt(moment().format('YYYY'), 10) + 1,
+    });
 }
