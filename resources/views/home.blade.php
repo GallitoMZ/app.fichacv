@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('usuario')
-    {{isset($data['persona']->PE_NOMBRES) ? $data['persona']->PE_NOMBRES: $data['user']->name}}
+    {{ isset($data['persona']->PE_NOMBRES) ? $data['persona']->PE_NOMBRES : $data['user']->name }}
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
