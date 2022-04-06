@@ -487,6 +487,35 @@ class DatosGeneralesController extends Controller
     {
         try {
 
+            if (empty($request->apellidopater)) {
+                $return = [
+                    'status' => 'error',
+                    'titulo' => '¡Registro no completado!',
+                    'message' => 'No se están enviando campos obligatorios: Apellido Paterno'
+                ];
+                return $return;
+            }
+
+            if (empty($request->apellidomater)) {
+                $return = [
+                    'status' => 'error',
+                    'titulo' => '¡Registro no completado!',
+                    'message' => 'No se están enviando campos obligatorios: Apellido Materno'
+                ];
+                return $return;
+            }
+
+            if (empty($request->nombre)) {
+                $return = [
+                    'status' => 'error',
+                    'titulo' => '¡Registro no completado!',
+                    'message' => 'No se están enviando campos obligatorios: Nombres'
+                ];
+                return $return;
+            }
+
+
+
             $id = $request->persona_codigo;
             $persona = Persona::find($id);
 
@@ -508,7 +537,23 @@ class DatosGeneralesController extends Controller
             $persona->PE_SEXO = $request->sexo;
             $persona->PE_ESTADO_CIV = $request->estadocivil;
 
-            $persona->save();
+            if (!$persona->save()) {
+                $msg = '';
+                if ($this->ENVIRONMENT_DEBUG) {
+                    foreach ($persona->getMessages() as $message) {
+                        $msg = $msg . $message . "</br>\n";
+                    }
+                } else {
+                    $msg = "No se pudo registrar los datos personales. </br>\n";
+                }
+                $return = [
+                    'status' => 'error',
+                    'titulo' => '¡Registro no completado!',
+                    'message' => 'Obtenemos el siguiente error: ' . $msg . '<br /><strong>NO se ha realizado ningún cambio en la base de datos!</strong>'
+                ];
+
+                return $return;
+            }
 
             $return = [
                 'status' => 'ok',
@@ -516,7 +561,7 @@ class DatosGeneralesController extends Controller
                 'message' => 'Se guardó con éxito!'
             ];
 
-            return $return;
+            return response()->json($return);
         } catch (Exception $ex) {
             $return = [
                 'status' => 'error',

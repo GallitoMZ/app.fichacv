@@ -8,7 +8,6 @@ use PhpParser\Node\Stmt\Else_;
 class Persona extends Model
 {
 
-    // protected $connection = 'softlarc';
     protected $table = 'persona';
     public $timestamps = false;
     protected $primaryKey = 'PE_CODIGO';

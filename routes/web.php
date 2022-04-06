@@ -27,17 +27,40 @@ Route::get('/usuarios', 'UsuariosController@usuarios')->name('usuarios');
 Route::get('/personas', 'UsuariosController@personas')->name('personas');
 
 Route::group(["prefix" => "user", "middleware" => ['auth']], function () {
-
     //Datos Generales
     Route::get('/formulario/datos_generales', 'PerfilCurricular\DatosGeneralesController@datos_generales')->name('formulario.datos_generales');
     Route::post('/formulario/datos_generales/guardar', 'PerfilCurricular\DatosGeneralesController@guardar')->name('formulario.datos_generales.guardar');
     Route::get('/formulario/prueba', 'PerfilCurricular\DatosGeneralesController@prueba')->name('formulario.datos_generales.prueba');
 });
-// Route::get('/contacto',function(){
-//     $correo = new TestMail;
-//     Mail::to('erik.melgarejo5@gmail.com')->send($correo);
-//     return "Mensaje enviado";
-// });
+
+Route::get('prueba', function () {
+    return "<h1>Has accedido correctamente a la ruta</h1>";
+})->middleware('age');
+
+Route::get('no-autorized', function () {
+    return "<h1>NO AUTORIZADO</h1>";
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::any('bucket/{location}/{filename}', function ($location, $filename) {
     $file = Storage::disk('s3')->get($location . '/' . $filename);

@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet"
         href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+
+    {{-- jquery-confirm --}}
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/jquery-confirm/jquery-confirm.min.css') }}">
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -50,7 +53,7 @@
                                 <label class="col-form-label col-form-label-sm ">Apellido Paterno:
                                     <span style="color:red">(*)</span>
                                 </label>
-                                {!! Form::text('apellidopater', isset($data['persona']->PE_APELLIDO_P) ? $data['persona']->PE_APELLIDO_P : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Apellido paterno', 'oninput' => 'fn_guardar()', 'required', 'id' => 'apellidop_id']) !!}
+                                {!! Form::text('apellidopater', isset($data['persona']->PE_APELLIDO_P) ? $data['persona']->PE_APELLIDO_P : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Apellido paterno', 'required', 'id' => 'apellidop_id']) !!}
 
                             </div>
                             <div class="form-group col-md">
@@ -58,14 +61,14 @@
                                 <label class="col-form-label col-form-label-sm ">Apellido Materno:
                                     <span style="color:red">(*)</span>
                                 </label>
-                                {!! Form::text('apellidomater', isset($data['persona']->PE_APELLIDO_M) ? $data['persona']->PE_APELLIDO_M : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Apellido materno', 'oninput' => 'fn_guardar()', 'required', 'id' => 'apellidom_id']) !!}
+                                {!! Form::text('apellidomater', isset($data['persona']->PE_APELLIDO_M) ? $data['persona']->PE_APELLIDO_M : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Apellido materno', 'required', 'id' => 'apellidom_id']) !!}
                             </div>
                             <div class="form-group col-md">
 
                                 <label class="col-form-label col-form-label-sm ">Nombres:
                                     <span style="color:red">(*)</span>
                                 </label>
-                                {!! Form::text('nombre', isset($data['persona']->PE_NOMBRES) ? $data['persona']->PE_NOMBRES : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Ingrese nombres', 'oninput' => 'fn_guardar()', 'required', 'id' => 'nombre_id']) !!}
+                                {!! Form::text('nombre', isset($data['persona']->PE_NOMBRES) ? $data['persona']->PE_NOMBRES : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Ingrese nombres', 'required', 'id' => 'nombre_id']) !!}
 
                             </div>
                         </div>
@@ -77,19 +80,19 @@
                                         de Origen)
                                         <span style="color:red">(*)</span>
                                     </label>
-                                    {!! Form::select('paisNacimiento', $data['paises_eleccion'], isset($data['persona']->PE_PAIS_NACION) ? $data['persona']->PE_PAIS_NACION : '', ['class' => 'form-control select2', 'required', 'onchange' => 'fn_guardar()', 'style' => 'width:100%', 'id' => 'nacionalidad_id']) !!}
+                                    {!! Form::select('paisNacimiento', $data['paises_eleccion'], isset($data['persona']->PE_PAIS_NACION) ? $data['persona']->PE_PAIS_NACION : '', ['class' => 'form-control select2', 'required', 'style' => 'width:100%', 'id' => 'nacionalidad_id']) !!}
                                 </div>
                             </div>
                             <div class="form-group col-md">
                                 <label class="col-form-label col-form-label-sm ">Ciudad de Nacimiento :
                                     <span style="color:red">(*)</span>
                                 </label>
-                                {!! Form::text('ciudad', isset($data['persona']->PE_CIUD_NACION) ? $data['persona']->PE_CIUD_NACION : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Ciudad ', 'oninput' => 'fn_guardar()', 'required', 'id' => 'ciudad_id']) !!}
+                                {!! Form::text('ciudad', isset($data['persona']->PE_CIUD_NACION) ? $data['persona']->PE_CIUD_NACION : '', ['class' => 'form-control form-control-sm input_mayus', 'placeholder' => 'Ciudad ', 'required', 'id' => 'ciudad_id']) !!}
                             </div>
                             <div class="form-group col-md">
                                 <label class="col-form-label col-form-label-sm">Fecha de Nacimiento</label><br>
                                 <div class="input-group">
-                                    {!! Form::text('fec_naci', isset($data['persona']->PE_FECHA_NAC) ? $data['persona']->getFechaNacimiento() : '', ['class' => 'form-control form-control-sm daterangepick', 'onchange' => 'fn_guardar()', 'id' => 'fec_naci_id']) !!}
+                                    {!! Form::text('fec_naci', isset($data['persona']->PE_FECHA_NAC) ? $data['persona']->getFechaNacimiento() : '', ['class' => 'form-control form-control-sm daterangepick', 'id' => 'fec_naci_id']) !!}
                                     <div class="input-group-append">
                                         <div class="input-group-text"><i class="fa fa-calendar" style="color: green"></i>
                                         </div>
@@ -156,7 +159,8 @@
                                 <a type="button" href="{{ route('home') }}" class="btn btn-secondary btn-block">Volver</a>
                             </div>
                             <div class="form-group">
-                                <span class="badge" id="txt_guardado_id"></span>
+                                {{-- <span class="badge" id="txt_guardado_id"></span> --}}
+                                <button type="button" class="btn btn-success btn-block" id="btn_guardar">Guardar</button>
                             </div>
                             <div class="form-group col-md-2">
                                 <a href="{{ route('formulario.datos_generales.prueba') }}" type="button"
@@ -247,8 +251,7 @@
 @section('scripts')
     {{-- select2 --}}
     <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
-    {{-- js --}}
-    <script src="{{ asset('adminlte/dist/js/PerfilCurricular/datos_generales/datos_generales.js') }}"></script>
+
 
     {{-- jqueryvalidate --}}
     <script src="{{ asset('adminlte/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
@@ -260,4 +263,8 @@
     <script src="{{ asset('adminlte/plugins/moment/locale/es.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    {{-- jquery-confirm --}}
+    <script src="{{ asset('adminlte/plugins/jquery-confirm/jquery-confirm.min.js') }}"></script>
+    {{-- js --}}
+    <script src="{{ asset('adminlte/dist/js/PerfilCurricular/datos_generales/datos_generales.js') }}"></script>
 @endsection
