@@ -146,40 +146,25 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('formulario.educacion') }}" class="nav-link">
+                                        <i class="fas fa-user-graduate text-yellow nav-icon"></i>
+                                        <p>Educacion</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a href="{{route('formulario.datos_generales.prueba')}}" class="nav-link">
-                                        <i class="fas fa-user-edit text-yellow nav-icon"></i>
+                                        <i class="far fa-file-pdf text-yellow nav-icon"></i>
                                         <p>Curriculum Prueba</p>
                                     </a>
                                 </li>
-                                {{-- <li class="nav-item menu-open">
-                                    <a href="#estudio" class="nav-link">
-                                        <i class="fas fa-graduation-cap text-yellow nav-icon"></i>
-                                        <p>
-                                            Datos de Estudio
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
+                                {{-- <li class="nav-item">
+                                    <a href="{{route('formulario.dinamica')}}" class="nav-link">
+                                        <i class="fas fa-chart-pie text-yellow nav-icon"></i>
+                                        <p>Dinamica</p>
                                     </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="#estudiosr" class="nav-link">
-                                                <i class="fas fa-user-graduate text-success nav-icon"></i>
-                                                <p>Estudios Realizados</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#especi" class="nav-link">
-                                                <i class="fas fa-book-reader text-success nav-icon"></i>
-                                                <p>Especializaciones</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#cono" class="nav-link">
-                                                <i class="fas fa-bookmark text-success nav-icon"></i>
-                                                <p>Conocimientos no Acred.</p>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li> --}}
+
 
                                 {{-- <li class="nav-item menu-open">
                                     <a href="#labo" class="nav-link ">

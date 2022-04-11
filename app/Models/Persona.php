@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Stmt\Else_;
 
 class Persona extends Model
 {

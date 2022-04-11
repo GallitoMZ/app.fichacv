@@ -3,77 +3,47 @@ $(document).ready(function() {
     var $select = $('.select2').select2({
         theme: 'bootstrap',
     });
-    // jQuery.validator.setDefaults({
-    //     onfocusout: function(e) {
-    //         this.element(e);
 
-    //     },
-
-    //     onkeyup: function(e) {
-    //         this.element(e);
-
-    //     },
-
-
-    //     highlight: function(element) {
-    //         jQuery(element).closest('.form-control').addClass('is-invalid');
-    //         jQuery(element).closest('.form-group').addClass('has-error');
-    //         // jQuery(element).closest('.select2').addClass('has-error');
-
-
-    //         jQuery(element).closest('.form-group').removeClass('has-success');
-    //         jQuery(element).closest('.form-control').removeClass('is-valid');
-    //         // jQuery(element).closest('.select2').removeClass('has-success');
-
-    //     },
-    //     unhighlight: function(element) {
-    //         jQuery(element).closest('.form-control').removeClass('is-invalid');
-    //         jQuery(element).closest('.form-group').removeClass('has-error');
-    //         // jQuery(element).closest('.select2').removeClass('has-error');
-
-    //         jQuery(element).closest('.form-control').addClass('is-valid');
-    //         jQuery(element).closest('.form-group').addClass('has-success');
-    //         // jQuery(element).closest('.select2').addClass('has-success');
-
-
-    //     },
-
-
-    //     errorElement: 'div',
-    //     errorClass: 'invalid-feedback',
-    //     errorPlacement: function(error, element) {
-    //         if (element.parent('.input-group-prepend').length) {
-    //             $(element).siblings(".invalid-feedback").append(error);
-    //             error.insertAfter(element.parent());
-    //         } else {
-    //             error.insertAfter(element);
-    //         }
-    //     },
-
-    // });
-    // $select.on('change', function() {
-    //     $(this).trigger('blur');
-    // });
-    // $select.on('select2:select', function() {
-    //     $(this).trigger('blur');
-    // });
-    // $("#modal_form_guardar").validate({
-    //     lang: 'es',
-    //     debug: true,
-    //     ignore: '.select2-input, .select2-focusser',
-    // });
-
-    // $select.rules('add', {
-    //     required: true,
-    //     messages: {
-    //         required: "Seleccione una Opcion"
-    //     }
-    // });
 
     fecha_custom();
 
     fn_guardar();
 
+
+    var existe_foto = $('#existe_foto_id').val();
+    var texto_image = 'Seleccione Foto';
+    var texto_image_2 = 'No hay foto adjunta';
+    if (existe_foto.length > 0) {
+        texto_image = 'Cambiar Foto';
+        texto_image_2 = 'foto_adjunta.jpg';
+    }
+
+    $('#modal_form_documento_file').filestyle({
+        htmlIcon: '<i class="fas fa-folder-open"></i> ',
+        text: texto_image,
+        btnClass: "bg-gradient-warning",
+        size: "",
+        placeholder: texto_image_2
+
+    });
+    document.getElementById("modal_form_documento_file").onchange = function(e) {
+        // Creamos el objeto de la clase FileReader
+        let reader = new FileReader();
+
+        // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+        reader.readAsDataURL(e.target.files[0]);
+
+        // Le decimos que cuando este listo ejecute el código interno
+        reader.onload = function() {
+            let preview = document.getElementById('preview'),
+                image = document.getElementById('imagen_preview_id');
+
+            image.src = reader.result;
+
+            preview.innerHTML = '';
+            // preview.append(image);
+        };
+    }
 });
 
 
@@ -90,7 +60,8 @@ function fn_guardar() {
 
     $('#btn_guardar').on('click', function(e) {
         e.preventDefault();
-        var data = form.serialize();
+        // var data = form.serialize();
+        var data = new FormData($('#modal_form_guardar')[0]);
         var dataj = form.serializeArray();
         console.log(JSON.stringify(dataj, null, "  "));
         return new Promise(function() {
@@ -122,7 +93,10 @@ function fn_guardar() {
                                         url: url,
                                         dataType: "json",
                                         type: 'post',
-                                        data: data
+                                        data: data,
+                                        cache: false,
+                                        processData: false,
+                                        contentType: false
                                     }).then(function(data) {
                                         if (data.status === 'ok') {
                                             self.setContent(data.message);
