@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Util\CommonController;
 use App\Models\data_req_s1;
 use App\Models\data_req_s2;
-use App\Models\Persona;
+
 use App\Models\Estudiosxpersona;
 use App\Models\Idiomasxpersona;
 use App\Models\Interesesxpersona;
+use App\Models\Persona;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 use Exception;

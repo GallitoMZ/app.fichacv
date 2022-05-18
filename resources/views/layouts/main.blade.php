@@ -158,12 +158,12 @@
                                         <p>Curriculum Prueba</p>
                                     </a>
                                 </li>
-                                {{-- <li class="nav-item">
+                                <li class="nav-item">
                                     <a href="{{route('formulario.dinamica')}}" class="nav-link">
                                         <i class="fas fa-chart-pie text-yellow nav-icon"></i>
                                         <p>Dinamica</p>
                                     </a>
-                                </li> --}}
+                                </li>
 
 
                                 {{-- <li class="nav-item menu-open">
