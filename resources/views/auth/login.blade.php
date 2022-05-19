@@ -4,7 +4,7 @@
 
     <body class="hold-transition login-page" style="background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);">
         <div class="top-right links">
-
+            <input type="hidden" name ="app.env" value="{{config('app.env')}}">
 
         </div>
         <div class="login-box">
