@@ -14,7 +14,7 @@ class UsuariosController extends Controller
         $users  = User::all();
 
         // return json_decode($users->persona);
-        return response()->json($users->persona);
+        return response()->json($users);
 
     }
 
