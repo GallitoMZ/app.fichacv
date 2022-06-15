@@ -38,7 +38,7 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">
-                        <span class="right badge badge-primary">Sistema Web de Administracion de Curriculum Vitae</span>
+                        <span class="right badge badge-primary">Sistema Web de Administracion de Portafolio y Curriculum Vitae</span>
                     </a>
                 </li>
             </ul>
@@ -88,7 +88,7 @@
                     style="opacity: .8"> --}}
                 <i class="fas fa-book text-success "></i>
 
-                <span class="brand-text font-weight-normal">SWACV</span>
+                <span class="brand-text font-weight-normal">SIWAPOCV</span>
             </a>
 
             <!-- Sidebar -->
@@ -229,7 +229,7 @@
                 -
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2022-2022 <a href="#">SWACV</a>.</strong> Todos los derechos reservados
+            <strong>Copyright &copy; 2022-2022 <a href="#">SIWAPOCV</a>.</strong> Todos los derechos reservados
         </footer>
     </div>
     <!-- ./wrapper -->

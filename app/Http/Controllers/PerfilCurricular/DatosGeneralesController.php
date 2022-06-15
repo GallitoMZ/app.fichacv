@@ -657,6 +657,16 @@ class DatosGeneralesController extends Controller
         }
     }
 
+
+
+
+
+
+
+
+
+
+
     public function prueba(Request $request)
     {
 
@@ -664,6 +674,8 @@ class DatosGeneralesController extends Controller
         $persona = Persona::where('US_CODIGO', $user->id)->first();
         if ($persona) {
             $data['persona'] = $persona;
+            $estudios = Estudiosxpersona::where('PE_CODIGO', $persona->id)->get();
+            $idiomas = Idiomasxpersona::where('PE_CODIGO', $persona->id)->get();
         } else {
             $persona_new = new Persona();
             $persona_new->PE_NOMBRES = $user->name;
@@ -671,13 +683,37 @@ class DatosGeneralesController extends Controller
             $persona_new->US_CODIGO = $user->id;
             $persona_new->save();
             $data['persona'] = $persona_new;
+            $estudios = Estudiosxpersona::where('PE_CODIGO', $persona_new->id)->get();
+            $idiomas = Idiomasxpersona::where('PE_CODIGO', $persona->id)->get();
+
         }
+
         $data['user'] = $user;
+        $data['estudios'] = $estudios;
+        $data['idiomas'] = $idiomas;
 
         // $direccion = Direccionxpersona::where('PE_CODIGO', $persona->id)->first();
 
         return view('PerfilCurricular.prueba', compact('data'));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function educacion(Request $request)
     {

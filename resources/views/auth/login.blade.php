@@ -10,7 +10,7 @@
         <div class="login-box">
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a href="{{ url('/') }}" class="h1"><i class="fas fa-book text-success"></i> <b>SWACV</b>
+                    <a href="{{ url('/') }}" class="h1"><i class="fas fa-book text-success"></i> <b>SIWAPOCV</b>
                     </a>
                 </div>
                 <div class="card-body">

@@ -46,7 +46,9 @@ Route::group(["prefix" => "user", "middleware" => ['auth']], function () {
     Route::post('/formulario/educacion/agregar_interes', 'PerfilCurricular\DatosGeneralesController@agregar_interes')->name('formulario.educacion.agregar_interes');
     Route::post('/formulario/educacion/eliminar_interes', 'PerfilCurricular\DatosGeneralesController@eliminar_interes')->name('formulario.educacion.eliminar_interes');
 
+    //clase
     Route::get('/formulario/prueba', 'PerfilCurricular\DatosGeneralesController@prueba')->name('formulario.datos_generales.prueba');
+
     Route::get('/formulario/descargar_ficha/view/{id}', 'PerfilCurricular\DatosGeneralesController@ver_ficha')->name('formulario.datos_generales.ver_ficha');
     Route::get('/formulario/descargar_ficha/download/{id}', 'PerfilCurricular\DatosGeneralesController@descargar_ficha')->name('formulario.datos_generales.descargar_ficha');
 

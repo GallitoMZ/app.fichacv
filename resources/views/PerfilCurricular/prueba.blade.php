@@ -28,7 +28,7 @@
 
                 <div class="card card-widget widget-user-2 shadow-sm">
 
-                    <div class="widget-user-header bg-primary">
+                    <div class="widget-user-header bg-gradient-info">
                         <div class="widget-user-image">
 
                             @if (isset($data['persona']->Foto) && $data['persona']->Foto != '')
@@ -44,54 +44,101 @@
                     <div class="card-footer p-0">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <span class="nav-link font-weight-bold">
-                                    DNI <span
-                                        class="float-right badge bg-primary">{{ $data['persona']->PE_NUM_DOCU }}</span>
+                                <span class="nav-link font-weight-bold badge-primary">
+                                    PERFIL PROFESIONAL
+                                </span>
+                                <span class="nav-link font-weight-normal text-justify">
+                                    {{ $data['persona']->PE_PERFIL }}
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link font-weight-bold badge-primary">
+                                    DATOS GENERALES
+                                </span>
+
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link ">
+                                    <span class="badge badge-info">DNI</span> <span
+                                        class="float-right badge">{{ $data['persona']->PE_NUM_DOCU }}</span>
                                 </span>
                             </li>
                             <li class="nav-item">
                                 <span class="nav-link font-weight-bold">
-                                    Correo <span
-                                        class="float-right badge bg-info">{{ $data['persona']->PE_CORREO }}</span>
+                                    <span class="badge badge-info">Correo</span> <span
+                                        class="float-right badge">{{ $data['persona']->PE_CORREO }}</span>
                                 </span>
                             </li>
                             <li class="nav-item">
                                 <span class="nav-link font-weight-bold">
-                                    Estado Civil <span
-                                        class="float-right badge bg-success">{{ $data['persona']->PE_ESTADO_CIV }}</span>
+                                    <span class="badge badge-info">Estado Civil</span> <span
+                                        class="float-right badge ">{{ $data['persona']->PE_ESTADO_CIV }}</span>
                                 </span>
                             </li>
                             <li class="nav-item">
                                 <span class="nav-link font-weight-bold">
-                                    Sexo <span class="float-right badge bg-danger">{{ $data['persona']->PE_SEXO }}</span>
+                                    <span class="badge badge-info">Sexo</span> <span
+                                        class="float-right badge">{{ $data['persona']->PE_SEXO }}</span>
                                 </span>
                             </li>
                             <li class="nav-item">
                                 <span class="nav-link font-weight-bold">
-                                    Fecha Nacimiento <span
-                                        class="float-right badge bg-light">{{ $data['persona']->getFechaNacimiento() }}</span>
+                                    <span class="badge badge-info">Fecha Nacimiento</span><span
+                                        class="float-right badge ">{{ $data['persona']->getFechaNacimiento() }}</span>
                                 </span>
                             </li>
                             <li class="nav-item">
                                 <span class="nav-link font-weight-bold">
-                                    Nacionalidad <span class="float-right badge bg-light text-uppercase">
+                                    <span class="badge badge-info">Nacionalidad</span> <span class="float-right badge bg-light text-uppercase">
                                         {{ $data['persona']->PE_CIUD_NACION }} -
                                         {{ $data['persona']->PE_PAIS_NACION }}</span>
                                 </span>
                             </li>
+                            <li class="nav-item">
+                                <span class="nav-link font-weight-bold badge-primary">
+                                    ESTUDIOS
+                                </span>
+                                <ul>
+                                    @foreach ($data['estudios'] as $row)
+                                        <li>
+                                            <span class="nav-link">
+                                                {{ $row->EST_FORMACION }}
+                                            </span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link font-weight-bold badge-primary">
+                                    IDIOMAS
+                                </span>
+                                <ul>
+                                    @foreach ($data['idiomas'] as $row)
+                                        <li>
+                                            <span class="nav-link ">
+                                                {{ $row->IDI_IDIOMA }}
+                                            </span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                            </li>
                         </ul>
+                        <hr>
+
                     </div>
                 </div>
 
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-outline-primary btn-lg"
+            <button type="button" class="btn btn-outline-primary btn-lg " disabled
                 onclick="window.open('{{ route('formulario.datos_generales.ver_ficha', $data['persona']->id) }}')">
                 <i class="fas fa-file-pdf"></i> &nbsp;
                 Ver CV</button>
             <span style="width: 2%"></span>
-            <button type="button" class="btn bg-gradient-success btn-lg"
+            <button type="button" class="btn bg-gradient-success btn-lg " disabled
                 onclick="window.open('{{ route('formulario.datos_generales.descargar_ficha', $data['persona']->id) }}')">
                 <i class="fas fa-download"></i> &nbsp;
                 Descargar CV</button>

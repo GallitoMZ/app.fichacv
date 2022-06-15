@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>SWACV</title>
+    <title>SIWAPOCV</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -91,10 +91,10 @@
 
         <div class="content">
             <div class="title m-b-md">
-                SWACV
+                SWAPOCV
             </div>
             <div class="title2 m-b-md">
-                Sistema Web de Administración de Curriculum Vitae
+                Sistema Web de Administración de Portafolio y Curriculum Vitae
             </div>
             <div class="links">
                 <a href="https://laravel.com/docs">Documentacion</a>

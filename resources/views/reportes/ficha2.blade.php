@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Curriculum Vitae - SWACV</title>
+    <title>Curriculum Vitae - SIWAPOCV</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -282,7 +282,7 @@
             <tbody>
                 <tr>
                     <td style="width: 20%; text-align: left;">
-                        SWACV
+                        SIWAPOCV
                     </td>
                     <td style="width: 40%; text-align: right;"> Designed on swacv.online</td>
                     <td style="width: 30%; text-align: right;">
