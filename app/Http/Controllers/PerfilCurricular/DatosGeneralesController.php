@@ -545,6 +545,62 @@ class DatosGeneralesController extends Controller
         }
     }
 
+
+
+    public function dinamica10(Request $request)
+    {
+
+        $user = auth()->user();
+
+        $data['user'] = $user;
+
+        return view('PerfilCurricular.dinamica10', compact('data'));
+    }
+
+    public function dinamica_guardar10(Request $request)
+    {
+
+        DB::connection('mysql')->beginTransaction();
+        DB::connection('mysql2')->beginTransaction();
+
+        try {
+
+
+            $info1 = data_req_s1::create([
+                'DR_DATA' => $request->data_S1,
+                'DR_ABREV' => $request->abrev_S1
+            ]);
+
+            $info2 = data_req_s2::create([
+                'DR_DATA' => $request->data_S2,
+                'DR_ABREV' => $request->abrev_S2
+            ]);
+            Log::info("HOLA");
+
+            DB::connection('mysql')->commit();
+            DB::connection('mysql2')->commit();
+
+            $return = [
+                'status' => 'ok',
+                'titulo' => '¡Cambios Guardados!',
+                'message' => 'Se guardó con éxito!'
+            ];
+            return response()->json($return);
+        } catch (Exception $ex) {
+
+            DB::connection('mysql')->rollBack();
+
+            DB::connection('mysql2')->rollBack();
+            $return = [
+                'status' => 'error',
+                'titulo' => '¡Error no completado!',
+                'message' => $ex->getMessage()
+            ];
+            return $return;
+        }
+    }
+
+
     public function guardar(Request $request)
     {
         try {
@@ -685,7 +741,6 @@ class DatosGeneralesController extends Controller
             $data['persona'] = $persona_new;
             $estudios = Estudiosxpersona::where('PE_CODIGO', $persona_new->id)->get();
             $idiomas = Idiomasxpersona::where('PE_CODIGO', $persona->id)->get();
-
         }
 
         $data['user'] = $user;
@@ -1409,110 +1464,6 @@ class DatosGeneralesController extends Controller
 
         $datos = Persona::where('PE_CODIGO', $persona->id)->first();
 
-
-        // if ($persona) {
-
-
-        //     $dia_naci = date_create($datos->PE_FNACIMIENTO);
-        //     $data['dia_nacimiento'] = date_format($dia_naci, 'd');
-
-        //     $mes_naci = date_create($datos->PE_FNACIMIENTO);
-        //     $data['mes_nacimiento'] = date_format($mes_naci, 'm');
-
-        //     $anio_naci = date_create($datos->PE_FNACIMIENTO);
-        //     $data['anio_nacimiento'] = date_format($anio_naci, 'Y');
-
-        //     $direccion_persona = Direccionxpersona::where([['PE_CODIGO', $persona->id]])->first();
-        //     $data['direccion_persona'] = $direccion_persona;
-
-        //     if ($direccion_persona->CONPE_TIPO_ZONA) {
-        //         $tipo_zona = $direccion_persona->CONPE_TIPO_ZONA;
-        //     } else {
-        //         $tipo_zona = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_NOMB_ZONA) {
-        //         $nombre_zona = $direccion_persona->CONPE_NOMB_ZONA;
-        //     } else {
-        //         $nombre_zona = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_TIPO_VIA) {
-        //         $tipo_via = $direccion_persona->CONPE_TIPO_VIA;
-        //     } else {
-        //         $tipo_via = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_NOMB_VIA) {
-        //         $nombre_via = $direccion_persona->CONPE_NOMB_VIA;
-        //     } else {
-        //         $nombre_via = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_KM) {
-        //         $km = $direccion_persona->CONPE_KM;
-        //     } else {
-        //         $km = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_MZ) {
-        //         $mz = $direccion_persona->CONPE_MZ;
-        //     } else {
-        //         $mz = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_LOTE) {
-        //         $lote = $direccion_persona->CONPE_LOTE;
-        //     } else {
-        //         $lote = ' ';
-        //     }
-
-
-        //     $data['direccion_cercana'] = $tipo_zona . ' ' . $nombre_zona . ' ' . $tipo_via . ' ' . $nombre_via . ', Km ' . $km . ' Mz ' . $mz . ' Lote ' . $lote;
-
-
-        //     $estudios_personales = Estudiosxpersona::where([['PE_CODIGO', $persona->id]])->get();
-        //     $data['estudios_personales'] = $estudios_personales;
-
-        //     $estudios_ffaa = Estudiosxpersona::where([['PE_CODIGO', $persona->id]])
-        //     ->where('ESPE_NIVEL', 'ESCUELA DE FORMACION DE LAS FUERZAS ARMADAS y POLICIA NACIONAL')->first();
-        //     $data['estudios_ffaa'] = $estudios_ffaa;
-        //     // $data['estudios_ffaa_folio'] = $estudios_ffaa->ESPE_NUM_FOLIO;
-
-
-        //     $estudios_ffaa_folio = Estudiosxpersona::where([['PE_CODIGO', $persona->id]])
-        //     ->where('ESPE_NIVEL', 'ESCUELA DE FORMACION DE LAS FUERZAS ARMADAS y POLICIA NACIONAL')->first();
-        //     if($estudios_ffaa_folio){
-        //         $data['estudios_ffaa_folio'] = $estudios_ffaa_folio->ESPE_NUM_FOLIO;
-        //     }else{
-        //         $data['estudios_ffaa_folio'] = '-';
-        //     }
-
-
-        //     if ($persona->PE_COLEGIATURA == 1) {
-        //         $data['colegio'] = $persona->PE_NAME_COLEG;
-        //         $data['num_coleg'] = $persona->PE_NUM_COLEG;
-        //     } else if ($persona->PE_COLEGIATURA == 0) {
-        //         $data['colegio'] = '--';
-        //         $data['num_coleg'] = '--';
-        //     }
-
-
-
-        //     $especialidades = Especializacionxpersona::where([['PE_CODIGO', $persona->id]])->get();
-        //     $data['especialidades'] = $especialidades;
-
-        //     $conocimientos = Conoci_noacxpersona::where([['PE_CODIGO', $persona->id]])->get();
-        //     $data['conocimientos'] = $conocimientos;
-
-        //     $experiencia_laboral_especifica = ExperienciaLabxpersona::where('PE_CODIGO', $persona->id)->where('EXPELAPE_TIPO', 'ESPECIFICA')
-        //         ->get();
-        //     $data['experiencia_laboral_especifica'] = $experiencia_laboral_especifica;
-
-        //     $experiencia_laboral_general = ExperienciaLabxpersona::where('PE_CODIGO', $persona->id)->get();
-        //     $data['experiencia_laboral_general'] = $experiencia_laboral_general;
-        // }
-
         $pdf = PDF::loadView('reportes.ficha2', compact('data'));
         return $pdf->stream('Curriculum_Vitae_SWACV.pdf');
     }
@@ -1535,111 +1486,6 @@ class DatosGeneralesController extends Controller
         $data['intereses'] = $interesestabla;
 
         $datos = Persona::where('PE_CODIGO', $persona->id)->first();
-
-
-
-        // if ($persona) {
-
-
-        //     $dia_naci = date_create($datos->PE_FNACIMIENTO);
-        //     $data['dia_nacimiento'] = date_format($dia_naci, 'd');
-
-        //     $mes_naci = date_create($datos->PE_FNACIMIENTO);
-        //     $data['mes_nacimiento'] = date_format($mes_naci, 'm');
-
-        //     $anio_naci = date_create($datos->PE_FNACIMIENTO);
-        //     $data['anio_nacimiento'] = date_format($anio_naci, 'Y');
-
-        //     $direccion_persona = Direccionxpersona::where([['PE_CODIGO', $persona->id]])->first();
-        //     $data['direccion_persona'] = $direccion_persona;
-
-        //     if ($direccion_persona->CONPE_TIPO_ZONA) {
-        //         $tipo_zona = $direccion_persona->CONPE_TIPO_ZONA;
-        //     } else {
-        //         $tipo_zona = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_NOMB_ZONA) {
-        //         $nombre_zona = $direccion_persona->CONPE_NOMB_ZONA;
-        //     } else {
-        //         $nombre_zona = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_TIPO_VIA) {
-        //         $tipo_via = $direccion_persona->CONPE_TIPO_VIA;
-        //     } else {
-        //         $tipo_via = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_NOMB_VIA) {
-        //         $nombre_via = $direccion_persona->CONPE_NOMB_VIA;
-        //     } else {
-        //         $nombre_via = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_KM) {
-        //         $km = $direccion_persona->CONPE_KM;
-        //     } else {
-        //         $km = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_MZ) {
-        //         $mz = $direccion_persona->CONPE_MZ;
-        //     } else {
-        //         $mz = ' ';
-        //     }
-
-        //     if ($direccion_persona->CONPE_LOTE) {
-        //         $lote = $direccion_persona->CONPE_LOTE;
-        //     } else {
-        //         $lote = ' ';
-        //     }
-
-
-        //     $data['direccion_cercana'] = $tipo_zona . ' ' . $nombre_zona . ' ' . $tipo_via . ' ' . $nombre_via . ', Km ' . $km . ' Mz ' . $mz . ' Lote ' . $lote;
-
-
-        //     $estudios_personales = Estudiosxpersona::where([['PE_CODIGO', $persona->id]])->get();
-        //     $data['estudios_personales'] = $estudios_personales;
-
-        //     $estudios_ffaa = Estudiosxpersona::where([['PE_CODIGO', $persona->id]])
-        //     ->where('ESPE_NIVEL', 'ESCUELA DE FORMACION DE LAS FUERZAS ARMADAS y POLICIA NACIONAL')->first();
-        //     $data['estudios_ffaa'] = $estudios_ffaa;
-        //     // $data['estudios_ffaa_folio'] = $estudios_ffaa->ESPE_NUM_FOLIO;
-
-
-        //     $estudios_ffaa_folio = Estudiosxpersona::where([['PE_CODIGO', $persona->id]])
-        //     ->where('ESPE_NIVEL', 'ESCUELA DE FORMACION DE LAS FUERZAS ARMADAS y POLICIA NACIONAL')->first();
-        //     if($estudios_ffaa_folio){
-        //         $data['estudios_ffaa_folio'] = $estudios_ffaa_folio->ESPE_NUM_FOLIO;
-        //     }else{
-        //         $data['estudios_ffaa_folio'] = '-';
-        //     }
-
-
-        //     if ($persona->PE_COLEGIATURA == 1) {
-        //         $data['colegio'] = $persona->PE_NAME_COLEG;
-        //         $data['num_coleg'] = $persona->PE_NUM_COLEG;
-        //     } else if ($persona->PE_COLEGIATURA == 0) {
-        //         $data['colegio'] = '--';
-        //         $data['num_coleg'] = '--';
-        //     }
-
-
-
-        //     $especialidades = Especializacionxpersona::where([['PE_CODIGO', $persona->id]])->get();
-        //     $data['especialidades'] = $especialidades;
-
-        //     $conocimientos = Conoci_noacxpersona::where([['PE_CODIGO', $persona->id]])->get();
-        //     $data['conocimientos'] = $conocimientos;
-
-        //     $experiencia_laboral_especifica = ExperienciaLabxpersona::where('PE_CODIGO', $persona->id)->where('EXPELAPE_TIPO', 'ESPECIFICA')
-        //         ->get();
-        //     $data['experiencia_laboral_especifica'] = $experiencia_laboral_especifica;
-
-        //     $experiencia_laboral_general = ExperienciaLabxpersona::where('PE_CODIGO', $persona->id)->get();
-        //     $data['experiencia_laboral_general'] = $experiencia_laboral_general;
-        // }
 
         $pdf = PDF::loadView('reportes.ficha2', compact('data'));
         return $pdf->download('Curriculum_Vitae_SWACV.pdf');

@@ -56,6 +56,12 @@ Route::group(["prefix" => "user", "middleware" => ['auth']], function () {
     // DINAMICAS
     Route::get('/formulario/dinamica', 'PerfilCurricular\DatosGeneralesController@dinamica')->name('formulario.dinamica');
     Route::post('/formulario/dinamica/guardar', 'PerfilCurricular\DatosGeneralesController@dinamica_guardar')->name('formulario.dinamica_guardar');
+
+    Route::get('/formulario/dinamicanueva10', 'PerfilCurricular\DatosGeneralesController@dinamica10')->name('formulario.dinamica10');
+    Route::post('/formulario/dinamicanueva10/guardar', 'PerfilCurricular\DatosGeneralesController@dinamica_guardar10')->name('formulario.dinamica_guardar10');
+
+
+
 });
 
 Route::get('prueba', function () {
