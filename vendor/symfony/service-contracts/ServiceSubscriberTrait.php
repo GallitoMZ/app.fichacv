@@ -30,12 +30,15 @@ trait ServiceSubscriberTrait
      */
     public static function getSubscribedServices(): array
     {
+<<<<<<< HEAD
         static $services;
 
         if (null !== $services) {
             return $services;
         }
 
+=======
+>>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
         $services = method_exists(get_parent_class(self::class) ?: '', __FUNCTION__) ? parent::getSubscribedServices() : [];
         $attributeOptIn = false;
 

@@ -133,12 +133,12 @@
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-outline-primary btn-lg " disabled
+            <button type="button" class="btn btn-outline-primary btn-lg "
                 onclick="window.open('{{ route('formulario.datos_generales.ver_ficha', $data['persona']->id) }}')">
                 <i class="fas fa-file-pdf"></i> &nbsp;
                 Ver CV</button>
             <span style="width: 2%"></span>
-            <button type="button" class="btn bg-gradient-success btn-lg " disabled
+            <button type="button" class="btn bg-gradient-success btn-lg "
                 onclick="window.open('{{ route('formulario.datos_generales.descargar_ficha', $data['persona']->id) }}')">
                 <i class="fas fa-download"></i> &nbsp;
                 Descargar CV</button>

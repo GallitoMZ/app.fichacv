@@ -76,6 +76,10 @@ class IteratorRecursiveDirectory extends \RecursiveDirectoryIterator
      * Current.
      * Please, see \RecursiveDirectoryIterator::current() method.
      */
+<<<<<<< HEAD
+=======
+    #[\ReturnTypeWillChange]
+>>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
     public function current()
     {
         $out = parent::current();
@@ -97,6 +101,10 @@ class IteratorRecursiveDirectory extends \RecursiveDirectoryIterator
      * Get children.
      * Please, see \RecursiveDirectoryIterator::getChildren() method.
      */
+<<<<<<< HEAD
+=======
+    #[\ReturnTypeWillChange]
+>>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
     public function getChildren()
     {
         $out = parent::getChildren();

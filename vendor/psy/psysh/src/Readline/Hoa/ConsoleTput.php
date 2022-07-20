@@ -802,4 +802,43 @@ class ConsoleTput
 
         return $pathname ?? '';
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Check whether all required terminfo capabilities are defined.
+     */
+    public static function isSupported(): bool
+    {
+        if (static::getTerminfo() === '') {
+            return false;
+        }
+
+        $requiredVars = [
+            'clear_screen',
+            'clr_bol',
+            'clr_eol',
+            'clr_eos',
+            'initialize_color',
+            'parm_down_cursor',
+            'parm_index',
+            'parm_left_cursor',
+            'parm_right_cursor',
+            'parm_rindex',
+            'parm_up_cursor',
+            'user6',
+            'user7',
+        ];
+
+        $tput = new static();
+
+        foreach ($requiredVars as $var) {
+            if ($tput->get($var) === null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+>>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
 }
