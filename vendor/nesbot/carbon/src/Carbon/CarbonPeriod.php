@@ -657,11 +657,7 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
             } elseif ($this->dateInterval === null &&
                 (
                     (\is_string($argument) && preg_match(
-<<<<<<< HEAD
-                        '/^(-?\d(\d(?![\/-])|[^\d\/-]([\/-])?)*|P[T0-9].*|(?:\h*\d+(?:\.\d+)?\h*[a-z]+)+)$/i',
-=======
                         '/^(-?\d(\d(?![\/-])|[^\d\/-]([\/-])?)*|P[T\d].*|(?:\h*\d+(?:\.\d+)?\h*[a-z]+)+)$/i',
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
                         $argument
                     )) ||
                     $argument instanceof DateInterval ||

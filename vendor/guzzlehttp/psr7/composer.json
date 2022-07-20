@@ -79,11 +79,7 @@
     },
     "extra": {
         "branch-alias": {
-<<<<<<< HEAD
-            "dev-master": "2.2-dev"
-=======
             "dev-master": "2.4-dev"
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
         }
     },
     "config": {
@@ -91,9 +87,6 @@
             "bamarni/composer-bin-plugin": true
         },
         "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "bamarni/composer-bin-plugin": true
-        }
+        "sort-packages": true
     }
 }

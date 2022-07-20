@@ -76,11 +76,7 @@ class FileLinkRead extends FileLink implements StreamIn
      * @throws \Hoa\File\Exception\FileDoesNotExist
      * @throws \Hoa\File\Exception
      */
-<<<<<<< HEAD
-    protected function &_open(string $streamName, StreamContext $context = null): resource
-=======
     protected function &_open(string $streamName, StreamContext $context = null)
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
     {
         static $createModes = [
             parent::MODE_READ,

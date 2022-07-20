@@ -153,8 +153,6 @@ class Logger implements LoggerInterface, ResettableInterface
     private $logDepth = 0;
 
     /**
-<<<<<<< HEAD
-=======
      * @var bool Whether to detect infinite logging loops
      *
      * This can be disabled via {@see useLoggingLoopDetection} if you have async handlers that do not play well with this
@@ -162,7 +160,6 @@ class Logger implements LoggerInterface, ResettableInterface
     private $detectCycles = true;
 
     /**
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
      * @psalm-param array<callable(array): array> $processors
      *
      * @param string             $name       The logging channel, a simple descriptive name that is attached to all log records
@@ -314,13 +311,9 @@ class Logger implements LoggerInterface, ResettableInterface
      */
     public function addRecord(int $level, string $message, array $context = [], DateTimeImmutable $datetime = null): bool
     {
-<<<<<<< HEAD
-        $this->logDepth += 1;
-=======
         if ($this->detectCycles) {
             $this->logDepth += 1;
         }
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
         if ($this->logDepth === 3) {
             $this->warning('A possible infinite logging loop was detected and aborted. It appears some of your handler code is triggering logging, see the previous log record for a hint as to what may be the cause.');
             return false;
@@ -346,11 +339,7 @@ class Logger implements LoggerInterface, ResettableInterface
                         'level' => $level,
                         'level_name' => $levelName,
                         'channel' => $this->name,
-<<<<<<< HEAD
-                        'datetime' => new DateTimeImmutable($this->microsecondTimestamps, $this->timezone),
-=======
                         'datetime' => $datetime ?? new DateTimeImmutable($this->microsecondTimestamps, $this->timezone),
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
                         'extra' => [],
                     ];
 
@@ -377,13 +366,9 @@ class Logger implements LoggerInterface, ResettableInterface
                 }
             }
         } finally {
-<<<<<<< HEAD
-            $this->logDepth--;
-=======
             if ($this->detectCycles) {
                 $this->logDepth--;
             }
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
         }
 
         return null !== $record;

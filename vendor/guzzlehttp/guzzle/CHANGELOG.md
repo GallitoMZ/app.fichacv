@@ -2,8 +2,6 @@
 
 Please refer to [UPGRADING](UPGRADING.md) guide for upgrading to a major version.
 
-<<<<<<< HEAD
-=======
 ## 7.4.5 - 2022-06-20
 
 * Fix change in port should be considered a change in origin
@@ -18,7 +16,6 @@ Please refer to [UPGRADING](UPGRADING.md) guide for upgrading to a major version
 
 * Fix cross-domain cookie leakage
 
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
 ## 7.4.2 - 2022-03-20
 
 ### Fixed

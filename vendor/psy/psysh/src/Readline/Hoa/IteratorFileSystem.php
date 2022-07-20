@@ -70,10 +70,7 @@ class IteratorFileSystem extends \FilesystemIterator
      * Current.
      * Please, see \FileSystemIterator::current() method.
      */
-<<<<<<< HEAD
-=======
     #[\ReturnTypeWillChange]
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
     public function current()
     {
         $out = parent::current();

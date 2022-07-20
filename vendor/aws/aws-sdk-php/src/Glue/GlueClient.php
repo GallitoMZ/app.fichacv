@@ -257,11 +257,8 @@ use Aws\AwsClient;
  * @method \GuzzleHttp\Promise\Promise listBlueprintsAsync(array $args = [])
  * @method \Aws\Result listCrawlers(array $args = [])
  * @method \GuzzleHttp\Promise\Promise listCrawlersAsync(array $args = [])
-<<<<<<< HEAD
-=======
  * @method \Aws\Result listCrawls(array $args = [])
  * @method \GuzzleHttp\Promise\Promise listCrawlsAsync(array $args = [])
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
  * @method \Aws\Result listCustomEntityTypes(array $args = [])
  * @method \GuzzleHttp\Promise\Promise listCustomEntityTypesAsync(array $args = [])
  * @method \Aws\Result listDevEndpoints(array $args = [])

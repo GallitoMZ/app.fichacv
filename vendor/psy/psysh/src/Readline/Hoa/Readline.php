@@ -431,15 +431,10 @@ class Readline
 
     /**
      * Get the autocompleter.
-<<<<<<< HEAD
-     */
-    public function getAutocompleter(): Autocompleter
-=======
      *
      * @return ?Autocompleter
      */
     public function getAutocompleter()
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
     {
         return $this->_autocompleter;
     }

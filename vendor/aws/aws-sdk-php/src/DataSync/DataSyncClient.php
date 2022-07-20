@@ -13,11 +13,8 @@ use Aws\AwsClient;
  * @method \GuzzleHttp\Promise\Promise createLocationEfsAsync(array $args = [])
  * @method \Aws\Result createLocationFsxLustre(array $args = [])
  * @method \GuzzleHttp\Promise\Promise createLocationFsxLustreAsync(array $args = [])
-<<<<<<< HEAD
-=======
  * @method \Aws\Result createLocationFsxOntap(array $args = [])
  * @method \GuzzleHttp\Promise\Promise createLocationFsxOntapAsync(array $args = [])
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
  * @method \Aws\Result createLocationFsxOpenZfs(array $args = [])
  * @method \GuzzleHttp\Promise\Promise createLocationFsxOpenZfsAsync(array $args = [])
  * @method \Aws\Result createLocationFsxWindows(array $args = [])
@@ -46,11 +43,8 @@ use Aws\AwsClient;
  * @method \GuzzleHttp\Promise\Promise describeLocationEfsAsync(array $args = [])
  * @method \Aws\Result describeLocationFsxLustre(array $args = [])
  * @method \GuzzleHttp\Promise\Promise describeLocationFsxLustreAsync(array $args = [])
-<<<<<<< HEAD
-=======
  * @method \Aws\Result describeLocationFsxOntap(array $args = [])
  * @method \GuzzleHttp\Promise\Promise describeLocationFsxOntapAsync(array $args = [])
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
  * @method \Aws\Result describeLocationFsxOpenZfs(array $args = [])
  * @method \GuzzleHttp\Promise\Promise describeLocationFsxOpenZfsAsync(array $args = [])
  * @method \Aws\Result describeLocationFsxWindows(array $args = [])

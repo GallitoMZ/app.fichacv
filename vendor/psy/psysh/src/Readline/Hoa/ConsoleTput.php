@@ -802,8 +802,6 @@ class ConsoleTput
 
         return $pathname ?? '';
     }
-<<<<<<< HEAD
-=======
 
     /**
      * Check whether all required terminfo capabilities are defined.
@@ -840,5 +838,4 @@ class ConsoleTput
 
         return true;
     }
->>>>>>> d5e38e9a97f2e9c8226be36a789567d5f57043b9
 }

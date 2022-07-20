@@ -140,13 +140,7 @@ EOF
         $localTranslations = $this->readLocalTranslations($locales, $domains, $this->transPaths);
 
         if (!$domains) {
-            if ($provider instanceof FilteringProvider) {
-                $domains = $provider->getDomains();
-            }
-
-            if (!$domains) {
-                $domains = $this->getDomainsFromTranslatorBag($localTranslations);
-            }
+            $domains = $this->getDomainsFromTranslatorBag($localTranslations);
         }
 
         if (!$deleteMissing && $force) {
