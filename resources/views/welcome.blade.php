@@ -91,7 +91,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                SWAPOCV - 2022 - Grupo 5
+                SWAPOCV - 2022 - Grupo 5 - D11
             </div>
             <div class="title2 m-b-md">
                 Sistema Web de Administración de Portafolio y Curriculum Vitae
