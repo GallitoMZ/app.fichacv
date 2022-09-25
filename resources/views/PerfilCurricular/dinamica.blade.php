@@ -13,7 +13,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="fas fa-user-edit text-warning nav-icon"></i> DINAMICA 11</h1>
+                    <h1><i class="fas fa-user-edit text-warning nav-icon"></i> DINAMICA 12</h1>
                 </div>
 
             </div><!-- /.row -->

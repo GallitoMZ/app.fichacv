@@ -520,7 +520,6 @@ class DatosGeneralesController extends Controller
                 'DR_DATA' => $request->data_S2,
                 'DR_ABREV' => $request->abrev_S2
             ]);
-            Log::info("HOLA");
 
             DB::connection('mysql')->commit();
             DB::connection('mysql2')->commit();
@@ -753,28 +752,30 @@ class DatosGeneralesController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function educacion(Request $request)
     {
 
+
         $user = auth()->user();
         $persona = Persona::where('US_CODIGO', $user->id)->first();
+
+        $estudiostabla = Estudiosxpersona::where('PE_CODIGO', $persona->PE_CODIGO)->get();
+
+        // $estudiostabla = Estudiosxpersona::where('PE_CODIGO', "
+        //     Y';
+        //     UPDATE user
+        //     SET email = 'atacante@ejemplo.com'
+        //     WHERE email = 'jhony@prueba.com;")
+        //     ->get();
+
+
+        //select * from `persona` where `US_CODIGO` = ?
+        //select * from `estudiostabla` where `PE_CODIGO` = ?
+
+
+        dd($estudiostabla);
+
+
 
         $data['user'] = $user;
         $data['persona'] = $persona;
@@ -1045,9 +1046,9 @@ class DatosGeneralesController extends Controller
         ];
         $data['tipo_intereses'] = $tipo_intereses;
 
-        $estudiostabla = Estudiosxpersona::where('PE_CODIGO', $persona->PE_CODIGO)
-            ->get();
-        $data['estudios'] = $estudiostabla;
+        // $estudiostabla = Estudiosxpersona::where('PE_CODIGO', $persona->PE_CODIGO)
+        //     ->get();
+        // $data['estudios'] = $estudiostabla;
 
         $idiomastabla = Idiomasxpersona::where('PE_CODIGO', $persona->PE_CODIGO)
             ->get();
